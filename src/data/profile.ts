@@ -8,7 +8,7 @@ export const profile = {
   github: "https://github.com/mnabilrafasya",
   linkedin: "https://www.linkedin.com/in/mnabilrafasya/",
   kaggle: "https://www.kaggle.com/muhammadnabilrafasya",
-  cvFile: "/cv-nabil.pdf",
+  cvFile: "/cv/CV_Muhammad Nabil Rafasya.pdf",
   university: "Sriwijaya University",
   status: "Active Student · Open to Internships",
   /** Letakkan foto profil asli di /public/images/about/photo.jpg lalu isi field ini.
