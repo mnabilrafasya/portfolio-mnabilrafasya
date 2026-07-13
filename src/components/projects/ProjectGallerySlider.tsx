@@ -34,6 +34,7 @@ export default function ProjectGallerySlider({
           image={current.image}
           video={current.video}
           showPlayHint
+          alwaysShowControls
         />
 
         {gallery.length > 1 && (

@@ -103,6 +103,7 @@ export default async function ProjectDetailPage({ params }: PageParams) {
               image={project.previewImage}
               video={project.previewVideo}
               showPlayHint
+              alwaysShowControls
             />
           </div>
         )}
