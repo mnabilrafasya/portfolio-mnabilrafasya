@@ -72,7 +72,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased flex min-h-screen flex-col bg-bg-base text-text-primary">
+      <body className="font-sans antialiased flex min-h-screen flex-col bg-bg-base text-text-primary" suppressHydrationWarning>
         <ThemeInit />
         <Navbar />
         <main className="flex-1">{children}</main>
