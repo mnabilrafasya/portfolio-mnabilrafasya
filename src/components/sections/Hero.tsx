@@ -154,7 +154,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="font-mono text-xs text-text-muted">scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-violet-500/40 to-transparent" />
+        <div className="w-px h-12 bg-linear-to-b from-violet-500/40 to-transparent" />
       </motion.div>
     </section>
   );
