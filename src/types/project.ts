@@ -1,4 +1,4 @@
-export type ProjectCategory = "web" | "ai" | "mobile" | "database" | "simulation";
+export type ProjectCategory = "web" | "ai" | "mobile";
 
 export interface ProjectLinks {
   github?: string;
