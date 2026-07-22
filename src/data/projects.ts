@@ -139,7 +139,7 @@ export const projects: Project[] = [
       github: "https://github.com/mnabilrafasya/DETEKSI-POSE-WITH-YOLO",
     },
     featured: true,
-    year: 2025,
+    year: 2026,
   },
 
   {
