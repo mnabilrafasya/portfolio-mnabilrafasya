@@ -51,15 +51,15 @@ export default function Hero() {
             shifts −4px X / −4px Y on hover via group-hover.
           */}
           <div className="group relative inline-block">
-            {/* Hard-offset shadow block — Terracotta, appears behind on hover */}
+            {/* Hard-offset shadow block — stays at 0,0. Contrasting color so it's visible behind the Terracotta button. */}
             <div
-              className="absolute inset-0 rounded bg-accent-terracotta translate-x-0 translate-y-0 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-150"
+              className="absolute inset-0 rounded bg-text-primary"
               style={{ zIndex: 0 }}
               aria-hidden="true"
             />
             <Link
               href="/#projects"
-              className="relative z-10 inline-flex items-center gap-2 px-6 py-3 rounded bg-accent-terracotta text-white font-semibold text-sm border border-accent-terracotta transition-transform duration-150 group-hover:translate-x-1 group-hover:translate-y-1"
+              className="relative z-10 inline-flex items-center gap-2 px-6 py-3 rounded bg-accent-terracotta text-white font-semibold text-sm border border-accent-terracotta transition-transform duration-150 group-hover:-translate-x-1 group-hover:-translate-y-1"
             >
               View Projects
               <ArrowRight className="w-4 h-4" />
