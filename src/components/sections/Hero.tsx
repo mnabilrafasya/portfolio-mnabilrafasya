@@ -4,7 +4,7 @@ import { profile, heroTechStack } from "@/data/profile";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <section id="home" className="relative min-h-screen flex items-center justify-center">
       <div className="max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
 
         {/* Role / location pill */}

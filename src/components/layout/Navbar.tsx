@@ -16,15 +16,13 @@ const navLinks = [
   { href: "/#contact", label: "Contact" },
 ];
 
-function isActive(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
-  return pathname.startsWith(href.replace(/#.*$/, "")) && href !== "/";
-}
+
 
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -32,6 +30,46 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection("");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px -70% 0px", // Trigger when the section crosses the top 30% of the screen
+      }
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((s) => observer.observe(s));
+
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const isLinkActive = (href: string) => {
+    if (pathname === "/") {
+      if (href === "/") return activeSection === "" || activeSection === "home";
+      if (href.startsWith("/#")) {
+        const sectionId = href.replace("/#", "");
+        return activeSection === sectionId;
+      }
+      return false; // E.g., /projects is not active on homepage
+    }
+    
+    if (href === "/") return false;
+    if (href.startsWith("/#")) return false;
+    return pathname.startsWith(href);
+  };
 
   return (
     <header
@@ -57,7 +95,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => {
-              const active = isActive(pathname, link.href);
+              const active = isLinkActive(link.href);
               return (
                 <Link
                   key={link.href}
@@ -106,7 +144,7 @@ export default function Navbar() {
       >
         <nav className="flex flex-col px-6 py-4 gap-4">
           {navLinks.map((link) => {
-            const active = isActive(pathname, link.href);
+            const active = isLinkActive(link.href);
             return (
               <Link
                 key={link.href}
