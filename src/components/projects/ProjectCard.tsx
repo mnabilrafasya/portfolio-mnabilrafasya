@@ -3,7 +3,7 @@ import { ArrowUpRight, Images } from "lucide-react";
 import ProjectThumbnail from "@/components/projects/ProjectThumbnail";
 import { GitHubIcon, KaggleIcon } from "@/components/ui/BrandIcons";
 import { Project } from "@/types/project";
-import { categoryLabel, categoryColor } from "@/lib/utils";
+import { categoryLabel } from "@/lib/utils";
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
@@ -21,7 +21,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         />
 
         <span
-          className={`absolute top-3 left-3 tag-pill backdrop-blur-sm font-mono ${categoryColor[project.category]}`}
+          className="absolute top-3 left-3 tag-pill font-mono uppercase tracking-widest text-accent-teal border-accent-teal/30 bg-accent-teal/10"
         >
           {categoryLabel[project.category]}
         </span>
@@ -40,7 +40,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
       <div className="p-5 flex flex-col flex-1">
         <Link href={`/projects/${project.slug}`}>
-          <h3 className="text-text-primary font-semibold mb-1.5 group-hover:text-violet-300 transition-colors">
+          <h3 className="text-text-primary font-semibold mb-1.5 group-hover:text-accent-terracotta transition-colors">
             {project.title}
           </h3>
         </Link>
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 href={project.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-text-muted hover:text-violet-400 transition-colors"
+                className="text-text-secondary hover:text-accent-teal transition-colors"
                 aria-label="GitHub"
               >
                 <GitHubIcon className="w-4 h-4" />
@@ -77,7 +77,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 href={project.links.kaggle}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-text-muted hover:text-cyan-400 transition-colors"
+                className="text-text-secondary hover:text-accent-teal transition-colors"
                 aria-label="Kaggle"
               >
                 <KaggleIcon className="w-4 h-4" />
@@ -86,7 +86,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           </div>
           <Link
             href={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-1 text-xs font-medium text-violet-300 group-hover:gap-1.5 transition-all"
+            className="inline-flex items-center gap-1 text-xs font-medium text-accent-terracotta group-hover:gap-1.5 transition-all"
           >
             See Details
             <ArrowUpRight className="w-3.5 h-3.5" />

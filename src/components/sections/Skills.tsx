@@ -1,7 +1,7 @@
 import { Brain, Code2, Database, Layers, type LucideIcon } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
-import { skillGroups, colorMap } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 
 const iconMap: Record<string, LucideIcon> = { Brain, Code2, Database, Layers };
 
@@ -13,7 +13,7 @@ export default function Skills() {
 
         <Reveal>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mb-3">
-            Technical <span className="text-gradient-violet-cyan">Skills</span>
+            Technical <span className="text-accent-terracotta">Skills</span>
           </h2>
           <p className="text-text-secondary mb-12 text-sm lg:text-base">
             Technologies, frameworks, and tools I use to design, develop, and
@@ -30,7 +30,7 @@ export default function Skills() {
               <Reveal key={group.label} delay={i * 80}>
                 <div className="glass-card glass-card-hover rounded-2xl p-5 h-full">
                   <div
-                    className={`w-9 h-9 rounded-lg flex items-center justify-center border mb-4 ${colorMap[group.color]}`}
+                    className="w-9 h-9 rounded-lg flex items-center justify-center border mb-4 text-accent-teal bg-accent-teal/10 border-accent-teal/20"
                   >
                     <Icon className="w-4 h-4" />
                   </div>

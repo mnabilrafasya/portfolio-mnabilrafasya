@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Play, Pause } from "lucide-react";
-import { cn, categoryColor } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { ProjectCategory } from "@/types/project";
 
 interface ProjectThumbnailProps {
@@ -140,14 +140,13 @@ export default function ProjectThumbnail({
         // terang/gelap lewat token CSS, tanpa percobaan fetch file apa pun.
         <div
           className={cn(
-            "absolute inset-0 flex flex-col items-center justify-center gap-3 bg-fill-subtle bg-grid-pattern transition-opacity duration-300",
+            "absolute inset-0 flex flex-col items-center justify-center gap-3 bg-fill-subtle transition-opacity duration-300",
             showVideo ? "opacity-0" : "opacity-100",
           )}
         >
           <div
             className={cn(
-              "w-14 h-14 rounded-full border flex items-center justify-center font-mono text-lg",
-              categoryColor[category],
+              "w-14 h-14 rounded-full border flex items-center justify-center font-mono text-lg text-accent-teal bg-accent-teal/10 border-accent-teal/20",
             )}
           >
             {initial}
