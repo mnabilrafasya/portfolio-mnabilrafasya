@@ -4,9 +4,11 @@ import { profile, heroTechStack } from "@/data/profile";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center"
+    >
       <div className="max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
-
         {/* Role / location pill */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border font-mono text-xs text-text-secondary uppercase tracking-widest mb-8 animate-fade-up">
           <MapPin className="w-3 h-3 text-accent-teal shrink-0" />
@@ -18,11 +20,10 @@ export default function Hero() {
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 text-text-primary"
           style={{ animationDelay: "80ms" }}
         >
-          Building{" "}
-          <span className="text-accent-terracotta">full-stack</span>
-          <br />
-          applications &amp; <span className="text-accent-terracotta">AI</span>
-          &#8209;powered solutions
+          I&apos;m Nabil — a Computer Science student building{" "}
+          <span className="text-accent-terracotta">full-stack apps</span> and{" "}
+          <span className="text-accent-terracotta">computer vision</span>{" "}
+          systems.
         </h1>
 
         {/* Subtext */}
