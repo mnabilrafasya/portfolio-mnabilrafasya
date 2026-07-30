@@ -10,8 +10,6 @@ import { profile } from "@/data/profile";
 
 export default function About() {
   const [activeIndex, setActiveIndex] = useState(0);
-  // track failed URLs instead of numeric indexes to avoid mismatch when
-  // the visible list is filtered. Store full URL strings.
   const [failedUrls, setFailedUrls] = useState<string[]>([]);
 
   const gallery = Array.from(
@@ -25,7 +23,6 @@ export default function About() {
       setActiveIndex(0);
       return;
     }
-
     if (activeIndex >= visiblePhotos.length) {
       setActiveIndex(0);
     }
@@ -41,7 +38,7 @@ export default function About() {
 
   useEffect(() => {
     if (visiblePhotos.length <= 1) return;
-    if (isHovered) return; // pause while hovering
+    if (isHovered) return;
 
     const id = setInterval(() => {
       setIsLoaded(false);
@@ -52,7 +49,7 @@ export default function About() {
   }, [visiblePhotos.length, isHovered]);
 
   return (
-    <section id="about" className="py-28 relative">
+    <section id="about" className="py-28">
       <div className="max-w-2xl lg:max-w-6xl mx-auto px-6">
         <SectionLabel index="01" label="About" />
 
@@ -61,7 +58,7 @@ export default function About() {
           <Reveal delay={100}>
             <h2 className="pr-6 text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mb-6 leading-tight">
               I'm{" "}
-              <span className="text-gradient-violet-cyan">{profile.name}</span>,
+              <span className="text-accent-terracotta">{profile.name}</span>,
               a Computer Science undergraduate passionate about building
               software that solves real-world problems.
             </h2>
@@ -130,7 +127,7 @@ export default function About() {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              {/* 1. Gambar Dekoratif di Belakang (Ukurannya sekarang presisi mengikuti aspect-4/5) */}
+              {/* Decorative background photo — offset behind main card */}
               {nextPhoto && (
                 <>
                   <button
@@ -141,10 +138,9 @@ export default function About() {
                       )
                     }
                     aria-label="Lanjut ke foto berikutnya"
-                    className="hidden sm:block absolute top-0 left-0 w-full h-full rounded-3xl overflow-hidden translate-x-6 -translate-y-6 rotate-6 -z-10 focus:outline-none transition-transform duration-300 hover:scale-[1.02]"
+                    className="hidden sm:block absolute top-0 left-0 w-full h-full rounded-md overflow-hidden translate-x-6 -translate-y-6 rotate-6 -z-10 focus:outline-none transition-transform duration-300 hover:scale-[1.02]"
                     style={{ WebkitTapHighlightColor: "transparent" }}
                   >
-                    {/* Desktop decorative preview (background) */}
                     <img
                       src={nextPhoto}
                       alt="Next preview"
@@ -152,7 +148,7 @@ export default function About() {
                     />
                   </button>
 
-                  {/* Mobile decorative preview: small clickable thumbnail top-right */}
+                  {/* Mobile thumbnail */}
                   <button
                     type="button"
                     onClick={() =>
@@ -162,7 +158,7 @@ export default function About() {
                     }
                     aria-label="Lanjut ke foto berikutnya"
                     title="Lanjut ke foto berikutnya"
-                    className="sm:hidden absolute top-3 right-3 w-12 h-12 rounded-lg overflow-hidden z-20 focus:outline-none border border-white/10 bg-black/10"
+                    className="sm:hidden absolute top-3 right-3 w-12 h-12 rounded-sm overflow-hidden z-20 focus:outline-none border border-border"
                     style={{ WebkitTapHighlightColor: "transparent" }}
                   >
                     <img
@@ -174,72 +170,71 @@ export default function About() {
                 </>
               )}
 
-              {/* 2. Kartu Foto Utama */}
-              <div className="w-full h-full glass-card rounded-3xl p-2 z-10 relative">
-                <div className="w-full h-full rounded-2xl overflow-hidden bg-bg-elevated flex items-center justify-center relative">
-                  <AnimatePresence mode="wait">
-                    {currentPhoto ? (
-                      <motion.div
-                        key={currentPhoto}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.02 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="absolute inset-0 w-full h-full"
-                      >
-                        <Image
-                          src={currentPhoto}
-                          alt={profile.name}
-                          fill
-                          unoptimized
-                          priority
-                          className="object-cover"
-                          onError={() => {
-                            setFailedUrls((prev) =>
-                              prev.includes(currentPhoto)
-                                ? prev
-                                : [...prev, currentPhoto],
-                            );
-                          }}
-                        />
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="flex flex-col items-center gap-3 text-text-muted"
-                      >
-                        <div className="w-20 h-20 rounded-full border border-violet-500/25 bg-violet-500/5 flex items-center justify-center">
-                          <User className="w-9 h-9 text-violet-400/60" />
-                        </div>
-                        <span className="font-mono text-[11px]">
-                          Photo not available
-                        </span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+              {/* Main photo card — DS card spec: md radius, 1px border at 15% */}
+              <div className="w-full h-full rounded-md border border-text-primary/15 overflow-hidden z-10 relative">
+                <AnimatePresence mode="wait">
+                  {currentPhoto ? (
+                    <motion.div
+                      key={currentPhoto}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.01 }}
+                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                      className="absolute inset-0 w-full h-full"
+                    >
+                      <Image
+                        src={currentPhoto}
+                        alt={profile.name}
+                        fill
+                        unoptimized
+                        priority
+                        className="object-cover"
+                        onError={() => {
+                          setFailedUrls((prev) =>
+                            prev.includes(currentPhoto)
+                              ? prev
+                              : [...prev, currentPhoto],
+                          );
+                        }}
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-text-secondary"
+                    >
+                      <div className="w-20 h-20 rounded-full border border-border flex items-center justify-center">
+                        <User className="w-9 h-9 text-text-secondary/40" />
+                      </div>
+                      <span className="font-mono text-[11px]">
+                        Photo not available
+                      </span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
 
-            {/* 3. Teks Status dan University Tepat di Bawah Card (Aman dari Tabrakan Posisi Absolute) */}
+            {/* Status & info below card */}
             <div className="mt-6 space-y-4 flex flex-col items-center md:items-start w-full">
-              {/* Status Badge */}
+              {/* Status badge — DS Level 1 card: 1px border, no shadow */}
               <div className="w-full max-w-[90%] md:max-w-full flex justify-center md:justify-start">
-                <div className="glass-card rounded-xl px-4 py-2.5 flex items-center gap-2 shadow-card-hover">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-glow-pulse shrink-0" />
+                <div className="rounded border border-border px-4 py-2.5 flex items-center gap-2">
+                  {/* Static dot — no animate-glow-pulse (deleted animation) */}
+                  <span className="w-2 h-2 rounded-full bg-accent-teal shrink-0" />
                   <span className="font-mono text-[11px] text-text-secondary leading-tight">
                     {profile.status}
                   </span>
                 </div>
               </div>
 
-              {/* Info Chips */}
+              {/* Info chips — DS §Tags/Chips: full radius, teal, mono uppercase */}
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                <span className="tag-pill text-text-secondary border-subtle bg-fill-subtle">
+                <span className="tag-pill font-mono uppercase tracking-widest text-[10px] text-accent-teal border-accent-teal/20 bg-accent-teal/5">
                   {profile.university}
                 </span>
-                <span className="tag-pill text-text-secondary border-subtle bg-fill-subtle">
+                <span className="tag-pill font-mono uppercase tracking-widest text-[10px] text-accent-teal border-accent-teal/20 bg-accent-teal/5">
                   {profile.location}
                 </span>
               </div>

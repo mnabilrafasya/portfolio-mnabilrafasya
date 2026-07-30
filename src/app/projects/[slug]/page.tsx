@@ -8,7 +8,7 @@ import MetricsGrid from "@/components/projects/MetricsGrid";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { GitHubIcon, KaggleIcon } from "@/components/ui/BrandIcons";
 import { getProjectBySlug, projects } from "@/data/projects";
-import { categoryLabel, categoryColor } from "@/lib/utils";
+import { categoryLabel } from "@/lib/utils";
 
 interface PageParams {
   params: Promise<{ slug: string }>;
@@ -52,19 +52,17 @@ export default async function ProjectDetailPage({ params }: PageParams) {
       <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-violet-300 transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-accent-terracotta transition-colors duration-150 mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           All Projects
         </Link>
 
         <div className="flex items-center gap-3 mb-4">
-          <span
-            className={`tag-pill font-mono ${categoryColor[project.category]}`}
-          >
+          <span className="tag-pill font-mono uppercase tracking-widest text-accent-teal border-accent-teal/30 bg-accent-teal/10">
             {categoryLabel[project.category]}
           </span>
-          <span className="inline-flex items-center gap-1 font-mono text-xs text-text-muted">
+          <span className="inline-flex items-center gap-1 font-mono text-xs text-text-secondary">
             <Calendar className="w-3 h-3" />
             {project.year}
           </span>
@@ -81,7 +79,7 @@ export default async function ProjectDetailPage({ params }: PageParams) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="tag-pill text-text-secondary  bg-white/3 font-mono"
+              className="tag-pill text-text-secondary border-border bg-transparent font-mono"
             >
               {tag}
             </span>
@@ -96,7 +94,7 @@ export default async function ProjectDetailPage({ params }: PageParams) {
             gallery={project.gallery}
           />
         ) : (
-          <div className="relative w-full aspect-4/3 sm:aspect-16/10 lg:aspect-21/10 min-h-[260px] md:min-h-[360px] rounded-2xl overflow-hidden glass-card">
+          <div className="relative w-full aspect-4/3 sm:aspect-16/10 lg:aspect-21/10 min-h-[260px] md:min-h-[360px] rounded-md overflow-hidden border border-text-primary/15">
             <ProjectThumbnail
               title={project.title}
               category={project.category}
@@ -110,7 +108,7 @@ export default async function ProjectDetailPage({ params }: PageParams) {
 
         {project.metrics && project.metrics.length > 0 && (
           <div className="mt-10">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-text-muted mb-4">
+            <h2 className="font-mono text-xs uppercase tracking-widest text-text-secondary mb-4">
               Result &amp; Metrics
             </h2>
             <MetricsGrid metrics={project.metrics} />
@@ -119,7 +117,7 @@ export default async function ProjectDetailPage({ params }: PageParams) {
 
         {project.longDescription && (
           <div className="mt-12">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-text-muted mb-4">
+            <h2 className="font-mono text-xs uppercase tracking-widest text-text-secondary mb-4">
               About This Project
             </h2>
             <p className="text-text-secondary leading-relaxed">
@@ -164,7 +162,7 @@ export default async function ProjectDetailPage({ params }: PageParams) {
 
       {related.length > 0 && (
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 mt-24">
-          <h2 className="font-mono text-xs uppercase tracking-widest text-text-muted mb-6">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-text-secondary mb-6">
             Related Projects
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -192,7 +190,7 @@ function LinkButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-violet-500/20 bg-violet-500/5 hover:bg-violet-500/10 text-text-primary text-sm font-medium transition-colors"
+      className="inline-flex items-center gap-2 px-5 py-2.5 rounded border border-border bg-transparent hover:border-accent-terracotta hover:text-accent-terracotta text-text-primary text-sm font-medium transition-colors duration-150"
     >
       {icon}
       {label}

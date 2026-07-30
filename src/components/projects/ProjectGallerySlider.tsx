@@ -26,7 +26,7 @@ export default function ProjectGallerySlider({
 
   return (
     <div>
-      <div className="relative w-full aspect-4/3 sm:aspect-16/10 lg:aspect-21/10 min-h-[260px] md:min-h-[360px] rounded-2xl overflow-hidden glass-card">
+      <div className="relative w-full aspect-4/3 sm:aspect-16/10 lg:aspect-21/10 min-h-[260px] md:min-h-[360px] rounded-md overflow-hidden border border-text-primary/15">
         <ProjectThumbnail
           key={current.image}
           title={`${title} — ${current.label}`}
@@ -42,21 +42,21 @@ export default function ProjectGallerySlider({
             <button
               onClick={() => goTo(index - 1)}
               aria-label="Previous"
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-colors"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-sm bg-black/60 hover:bg-black/80 border border-white/20 flex items-center justify-center text-white transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={() => goTo(index + 1)}
               aria-label="Next"
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-sm bg-black/60 hover:bg-black/80 border border-white/20 flex items-center justify-center text-white transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </>
         )}
 
-        <span className="absolute bottom-3 left-3 font-mono text-[11px] text-white/80 bg-black/40 backdrop-blur-sm px-2 py-1 rounded">
+        <span className="absolute bottom-3 left-3 font-mono text-[11px] text-white/90 bg-black/60 px-2 py-1 rounded-sm">
           {current.label}
         </span>
       </div>
@@ -71,8 +71,8 @@ export default function ProjectGallerySlider({
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
                 i === index
-                  ? "w-6 bg-violet-400"
-                  : "w-1.5 bg-text-muted/30 hover:bg-text-muted/50",
+                  ? "w-6 bg-accent-terracotta"
+                  : "w-1.5 bg-text-secondary/30 hover:bg-text-secondary/50",
               )}
             />
           ))}

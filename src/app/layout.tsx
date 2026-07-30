@@ -91,6 +91,7 @@ export default function RootLayout({
     <html
       lang="id"
       className={`${generalSans.variable} ${ibmPlexMono.variable} scroll-smooth`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body

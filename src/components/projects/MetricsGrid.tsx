@@ -6,12 +6,12 @@ export default function MetricsGrid({ metrics }: { metrics: ProjectMetric[] }) {
       {metrics.map((metric) => (
         <div
           key={metric.label}
-          className="glass-card rounded-xl p-4 text-center"
+          className="rounded-md border border-text-primary/15 p-4 text-center"
         >
-          <div className="text-xl md:text-2xl font-bold text-gradient-violet-cyan mb-1">
+          <div className="text-xl md:text-2xl font-bold text-accent-terracotta mb-1">
             {metric.value}
           </div>
-          <div className="font-mono text-[11px] text-text-muted uppercase tracking-wide">
+          <div className="font-mono text-[11px] text-text-secondary uppercase tracking-wide">
             {metric.label}
           </div>
         </div>

@@ -11,9 +11,9 @@ export default function ProjectsPage() {
     <section className="pt-32 pb-24 min-h-screen">
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-12">
-          <span className="font-mono text-xs text-violet-400">Portfolio</span>
+          <span className="font-mono text-xs text-accent-terracotta">Portfolio</span>
           <h1 className="text-3xl md:text-5xl font-bold text-text-primary mt-2">
-            All <span className="text-gradient-violet-cyan">Projects</span>
+            All <span className="text-accent-terracotta">Projects</span>
           </h1>
         </div>
 

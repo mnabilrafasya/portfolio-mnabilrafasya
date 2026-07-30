@@ -43,7 +43,7 @@ export default function ProjectsExplorer() {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="text-text-muted text-center py-20">
+        <p className="text-text-secondary text-center py-20">
           There are no projects in this category yet.
         </p>
       ) : (
@@ -72,8 +72,8 @@ function FilterPill({
       className={cn(
         "px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-200",
         active
-          ? "bg-violet-500/15 border-violet-400/40 text-violet-200"
-          : "border-subtle bg-fill-subtle text-text-secondary hover:border-violet-500/20 hover:text-text-primary",
+          ? "bg-accent-teal/10 border-accent-teal/30 text-accent-teal"
+          : "border-border bg-transparent text-text-secondary hover:border-accent-teal/50 hover:text-text-primary",
       )}
     >
       {label}

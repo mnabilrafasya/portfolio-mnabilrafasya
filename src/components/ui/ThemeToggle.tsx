@@ -26,7 +26,7 @@ export default function ThemeToggle() {
     <button
       onClick={handleToggle}
       aria-label="Ganti tema terang/gelap"
-      className="relative w-8 h-8 rounded-lg border border-subtle bg-fill-subtle hover:bg-fill-subtle-hover flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors"
+      className="relative w-8 h-8 rounded-sm border border-border bg-transparent hover:bg-text-primary/5 flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors duration-150"
     >
       <Sun className="theme-icon-sun w-4 h-4" />
       <Moon className="theme-icon-moon w-4 h-4" />

@@ -127,7 +127,7 @@ export default function ProjectThumbnail({
   return (
     <div
       className={cn(
-        "relative w-full h-full min-h-0 overflow-hidden bg-bg-elevated",
+        "relative w-full h-full min-h-0 overflow-hidden bg-transparent",
         className,
       )}
       onMouseEnter={() => setHovered(true)}
@@ -140,7 +140,7 @@ export default function ProjectThumbnail({
         // terang/gelap lewat token CSS, tanpa percobaan fetch file apa pun.
         <div
           className={cn(
-            "absolute inset-0 flex flex-col items-center justify-center gap-3 bg-fill-subtle transition-opacity duration-300",
+            "absolute inset-0 flex flex-col items-center justify-center gap-3 bg-transparent transition-opacity duration-300",
             showVideo ? "opacity-0" : "opacity-100",
           )}
         >
@@ -151,7 +151,7 @@ export default function ProjectThumbnail({
           >
             {initial}
           </div>
-          <span className="font-mono text-[11px] text-text-muted tracking-wide">
+          <span className="font-mono text-[11px] text-text-secondary tracking-wide">
             Preview not available
           </span>
         </div>
@@ -188,7 +188,7 @@ export default function ProjectThumbnail({
 
       {showPlayHint && hasPlayableVideo && !showVideo && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-          <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/20">
+          <div className="w-10 h-10 rounded-full bg-black/60 flex items-center justify-center border border-white/20">
             <Play className="w-4 h-4 text-white fill-white" />
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function ProjectThumbnail({
           <button
             onClick={togglePlayVideo}
             className={cn(
-              "flex items-center justify-center rounded-full backdrop-blur-sm transition-all duration-200 border",
+              "flex items-center justify-center rounded-full transition-all duration-200 border",
               isPlaying || showPauseIcon
                 ? "w-12 h-12 bg-black/60 border-white/30 hover:bg-black/70"
                 : "w-14 h-14 bg-black/50 border-white/20 hover:bg-black/60",
