@@ -1,161 +1,108 @@
-"use client";
-
-import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, MapPin } from "lucide-react";
 import { profile, heroTechStack } from "@/data/profile";
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouse = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    };
-    window.addEventListener("mousemove", handleMouse);
-    return () => window.removeEventListener("mousemove", handleMouse);
-  }, []);
-
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 bg-grid-pattern opacity-100"
-        style={{
-          maskImage:
-            "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
-        }}
-      />
+    <section className="relative min-h-screen flex items-center justify-center">
+      <div className="max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
 
-      {/* Hero glow */}
-      <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
+        {/* Role / location pill */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border font-mono text-xs text-text-secondary uppercase tracking-widest mb-8 animate-fade-up">
+          <MapPin className="w-3 h-3 text-accent-teal shrink-0" />
+          {profile.role}&nbsp;·&nbsp;{profile.location}
+        </div>
 
-      {/* Cursor spotlight */}
-      <div
-        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, rgba(124,58,237,0.08), transparent 70%)`,
-        }}
-      />
-
-      {/* Floating orbs */}
-      <div className="absolute top-1/4 left-1/5 w-64 h-64 bg-violet-600/10 rounded-full blur-3xl animate-float pointer-events-none" />
-      <div
-        className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-cyan-500/8 rounded-full blur-3xl pointer-events-none animate-float-slow"
-        style={{ animationDelay: "2s" }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto pt-20 md:pt-0 px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-500/20 bg-violet-500/5 mb-6"
+        {/* H1 */}
+        <h1
+          className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 text-text-primary"
+          style={{ animationDelay: "80ms" }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-glow-pulse" />
-          <span className="font-mono text-xs text-violet-300">
-            {profile.role} · {profile.location}
-          </span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-6"
-        >
-          <span className="text-text-primary">Building </span>
-          <span className="text-gradient-violet-cyan">
-            full-stack applications
-          </span>
+          Building{" "}
+          <span className="text-accent-terracotta">full-stack</span>
           <br />
-          <span className="text-text-primary">and </span>
-          <span className="text-gradient-violet-cyan">
-            AI-powered solutions
-          </span>
-        </motion.h1>
+          applications &amp; <span className="text-accent-terracotta">AI</span>
+          &#8209;powered solutions
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-text-secondary text-base md:text-xl max-w-4xl mx-auto leading-relaxed mb-10"
+        {/* Subtext */}
+        <p
+          className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-up"
+          style={{ animationDelay: "160ms" }}
         >
           Computer Science undergraduate at{" "}
-          <span className="text-text-primary font-medium">
-            Sriwijaya University
+          <span className="text-text-primary font-semibold">
+            {profile.university}
           </span>{" "}
-          with hands-on experience in{" "}
-          <span className="text-text-primary font-medium">
-            full-stack software development
-          </span>{" "}
-          and{" "}
-          <span className="text-text-primary font-medium">
-            computer vision.{" "}
-          </span>{" "}
-          Passionate about building practical software solutions ranging from
-          public service platforms and organizational websites to AI-powered
-          image analysis applications.
-        </motion.p>
+          with hands-on experience in full-stack development and computer
+          vision. Building practical software from public-service platforms to
+          AI-powered image analysis.
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-3 justify-center items-center"
+        {/* CTAs */}
+        <div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-up"
+          style={{ animationDelay: "240ms" }}
         >
-          <Link
-            href="/#projects"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-medium text-sm transition-all duration-200 shadow-glow-violet hover:shadow-lg"
-          >
-            View Projects
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
+          {/*
+            Primary CTA — hard-offset hover (§Elevation Level 2).
+            This is the ONLY place this effect appears site-wide.
+            Implementation: relative positioning + pseudo-element block behind button
+            shifts −4px X / −4px Y on hover via group-hover.
+          */}
+          <div className="group relative inline-block">
+            {/* Hard-offset shadow block — Terracotta, appears behind on hover */}
+            <div
+              className="absolute inset-0 rounded bg-accent-terracotta translate-x-0 translate-y-0 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-150"
+              style={{ zIndex: 0 }}
+              aria-hidden="true"
+            />
+            <Link
+              href="/#projects"
+              className="relative z-10 inline-flex items-center gap-2 px-6 py-3 rounded bg-accent-terracotta text-white font-semibold text-sm border border-accent-terracotta transition-transform duration-150 group-hover:translate-x-1 group-hover:translate-y-1"
+            >
+              View Projects
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Secondary CTA — plain 1px border, no fill, no hard-offset */}
           <a
             href={profile.cvFile}
             download
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-violet-500/25 bg-violet-500/5 hover:bg-violet-500/10 text-text-primary text-sm font-medium transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded border border-border text-text-primary text-sm font-medium hover:border-accent-terracotta hover:text-accent-terracotta transition-colors duration-150"
           >
-            <Download className="w-4 h-4 text-violet-400" />
+            <Download className="w-4 h-4" />
             Download CV
           </a>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-wrap justify-center gap-2 mt-14"
+        {/* Tech stack row */}
+        <div
+          className="flex flex-wrap justify-center gap-2 animate-fade-up"
+          style={{ animationDelay: "320ms" }}
         >
+          <span className="font-mono text-xs text-text-secondary uppercase tracking-widest mr-2 self-center">
+            Stack
+          </span>
           {heroTechStack.map((tech) => (
             <span
               key={tech}
-              className="font-mono text-xs px-2.5 py-1 rounded-md border border-subtle bg-fill-subtle text-text-muted hover:text-text-secondary hover:border-violet-500/20 transition-colors"
+              className="font-mono text-xs px-2.5 py-1 rounded border border-border bg-transparent text-text-secondary hover:border-accent-teal hover:text-accent-teal transition-colors duration-150"
             >
               {tech}
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="font-mono text-xs text-text-muted">scroll</span>
-        <div className="w-px h-12 bg-linear-to-b from-violet-500/40 to-transparent" />
-      </motion.div>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+        <span className="font-mono text-xs text-text-secondary uppercase tracking-widest">
+          scroll
+        </span>
+        <div className="w-px h-10 bg-border" />
+      </div>
     </section>
   );
 }
