@@ -1,11 +1,32 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import localFont from "next/font/local";
+import { IBM_Plex_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ThemeInit from "@/components/ui/ThemeInit";
 import { profile } from "@/data/profile";
 import "./globals.css";
-import ThemeInit from "@/components/ui/ThemeInit";
+
+// General Sans — self-hosted via next/font/local (Fontshare, variable font)
+const generalSans = localFont({
+  src: [
+    { path: "./fonts/GeneralSans-Variable.woff2", style: "normal" },
+    { path: "./fonts/GeneralSans-VariableItalic.woff2", style: "italic" },
+  ],
+  variable: "--font-general-sans",
+  display: "swap",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
+});
+
+// IBM Plex Mono — available on Google Fonts
+// Used for labels, tags, metrics, and tech-stack chips per design system
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-ibm-plex-mono",
+  display: "swap",
+  fallback: ["ui-monospace", "monospace"],
+});
 
 const themeInitScript = ` (function () {
   try {
@@ -69,10 +90,13 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}
+      className={`${generalSans.variable} ${ibmPlexMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased flex min-h-screen flex-col bg-bg-base text-text-primary" suppressHydrationWarning>
+      <body
+        className="font-sans antialiased flex min-h-screen flex-col"
+        suppressHydrationWarning
+      >
         <ThemeInit />
         <Navbar />
         <main className="flex-1">{children}</main>
